@@ -2,6 +2,7 @@ import { ChatContextProvider } from "@/components/ChatContext";
 import ChatInput from "@/components/ChatInput";
 import DeleteChat from "@/components/DeleteChat";
 import InviteUser from "@/components/InviteUser";
+import LanguagesSwitcher from "@/components/LanguagesSwitcher";
 import LeaveChat from "@/components/LeaveChat";
 import Messages from "@/components/Messages";
 import ParticipantsCard from "@/components/ParticipantsCard";
@@ -14,19 +15,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { db } from "@/lib/db";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
 import { DoorOpen, Settings, Settings2 } from "lucide-react";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import React from "react";
+
+
 
 export default async function ChatPage({
   params,
@@ -57,23 +54,19 @@ export default async function ChatPage({
           <div className="w-full h-full flex items-center justify-between px-10 bg-white rounded-md">
             <ParticipantsCard participants={chats.participants} />
             <DropdownMenu>
-              <DropdownMenuTrigger className="text-lg hidden md:block font-semibold">{chats.name}</DropdownMenuTrigger>
+              <DropdownMenuTrigger className="text-lg hidden md:block font-semibold">
+                {chats.name}
+              </DropdownMenuTrigger>
               <DropdownMenuContent>
                 {chats.participants.map((a, b) => {
-                  return <DropdownMenuItem key={a.id}>{a.name}</DropdownMenuItem>;
+                  return (
+                    <DropdownMenuItem key={a.id}>{a.name}</DropdownMenuItem>
+                  );
                 })}
               </DropdownMenuContent>
             </DropdownMenu>
             <div className="flex items-center gap-2">
-              <Select>
-                <SelectTrigger className="w-[200px]">
-                  <SelectValue placeholder="Select Language" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="En">English</SelectItem>
-                  <SelectItem value="Tel"> Telugu</SelectItem>
-                </SelectContent>
-              </Select>
+             <LanguagesSwitcher/>
 
               <DropdownMenu>
                 <DropdownMenuTrigger>
@@ -84,12 +77,14 @@ export default async function ChatPage({
                     {chats.adminId === userId ? (
                       <DeleteChat chatId={chats.id} />
                     ) : (
-                     <LeaveChat chatId={chats.id} id={userId}/>
+                      <LeaveChat chatId={chats.id} id={userId} />
                     )}
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuLabel>
-                    {chats.adminId === userId ? <InviteUser chatId={chats.id}/> : null}
+                    {chats.adminId === userId ? (
+                      <InviteUser chatId={chats.id} />
+                    ) : null}
                   </DropdownMenuLabel>
                 </DropdownMenuContent>
               </DropdownMenu>
