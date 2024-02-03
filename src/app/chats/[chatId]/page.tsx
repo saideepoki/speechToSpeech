@@ -1,6 +1,7 @@
 import { ChatContextProvider } from "@/components/ChatContext";
 import ChatInput from "@/components/ChatInput";
 import DeleteChat from "@/components/DeleteChat";
+import LeaveChat from "@/components/LeaveChat";
 import Messages from "@/components/Messages";
 import ParticipantsCard from "@/components/ParticipantsCard";
 import { Button } from "@/components/ui/button";
@@ -45,7 +46,7 @@ export default async function ChatPage({
   }
   const { userId } = auth();
   if (!userId) {
-    redirectToSignIn();
+    return redirectToSignIn();
   }
 
   return (
@@ -82,9 +83,7 @@ export default async function ChatPage({
                     {chats.adminId === userId ? (
                       <DeleteChat chatId={chats.id} />
                     ) : (
-                      <Button variant={"secondary"}>
-                        Leave Group <DoorOpen className="ml-2" />
-                      </Button>
+                     <LeaveChat chatId={chats.id} id={userId}/>
                     )}
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
