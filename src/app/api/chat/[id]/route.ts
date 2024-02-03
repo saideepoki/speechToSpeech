@@ -33,11 +33,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
                 chatId:params.id
             }
         })
-        await db.chat.delete({
-            where: {
-                id: id
-            }
-        });
+       
         return NextResponse.json({ message: "Deleted Succesfully" }, { status: 200 })
 
     } catch (error: any) {
