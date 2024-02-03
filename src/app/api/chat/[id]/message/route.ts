@@ -78,7 +78,7 @@ export async function POST (request: NextRequest, { params }: { params: { id: st
                 content:message,
             }
         })
-        console.log(messages)
+      
         
         await pusherServer.trigger("my-channel","my-event",{
             message:`${JSON.stringify(messages)}\n\n`,
