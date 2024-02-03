@@ -15,17 +15,7 @@ export default function Messages({ chatId }: { chatId: string }) {
   console.log(user?.id)
 
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    var channel = pusherClient.subscribe("my-channel");
-    channel.bind("my-event", function (data: any) {
-      //@ts-ignore
-      setData((prev) => [...prev, data]);
-    });
-
-    return () => {
-      pusherClient.unsubscribe("my-channel");
-    };
-  }, []);
+  
 
   async function getMessages() {
     try {
