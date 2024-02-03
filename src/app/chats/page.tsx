@@ -101,7 +101,7 @@ export default async function Dashboard() {
                     {format(new Date(chat.createdAt), "MMM yyyy")}
                   </div>
                   <div className="flex -space-x-4 rtl:space-x-reverse">
-                    {chat.participants.slice(0, 4).map((participant) => (
+                    {chat.participants.slice(0, 3).map((participant) => (
                       <Avatar key={participant.id}>
                         <AvatarImage
                           src={participant.imageUrl}

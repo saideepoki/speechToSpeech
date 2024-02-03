@@ -6,9 +6,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useUser } from "@clerk/nextjs";
 import { PersonStandingIcon } from "lucide-react";
 import { Icons } from "./icon";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
+import { Component } from "react";
 
 interface MessageProps {
-  message: Messages;
+  message: any;
   isNextMessageSamePerson: boolean;
 }
 
@@ -16,12 +23,11 @@ const Message: React.FC<MessageProps> = ({
   message,
   isNextMessageSamePerson,
 }) => {
-  
-  const {user}=useUser()
-  if(!user ){
-    return null
+  const { user } = useUser();
+  if (!user) {
+    return null;
   }
-  const userId=user.id
+  const userId = user.id;
 
   return (
     <div
@@ -40,12 +46,43 @@ const Message: React.FC<MessageProps> = ({
         )}
       >
         {message.senderId === userId ? (
-          <Avatar>
-            <AvatarImage src={user.imageUrl} alt={user?.firstName||"J"} />
-            <AvatarFallback>{user?.firstName?.slice(0, 2)}</AvatarFallback>
-          </Avatar>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Avatar className="w-5 h-5">
+                  <AvatarImage
+                    src={user.imageUrl}
+                    alt={user?.firstName || "J"}
+                  />
+                  <AvatarFallback>
+                    {user?.firstName?.slice(0, 2)}
+                  </AvatarFallback>
+                </Avatar>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{user?.firstName}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         ) : (
-          <Icons.user className='fill-zinc-300 h-3/4 w-3/4' />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Avatar className="w-5 h-5">
+                  <AvatarImage
+                    src={message.sender?.imageUrl}
+                    alt={message.sender?.name || "J"}
+                  />
+                  <AvatarFallback>
+                    {message.sender?.name.slice(0, 2)}
+                  </AvatarFallback>
+                </Avatar>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{message?.sender?.name}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         )}
       </div>
 
@@ -65,11 +102,12 @@ const Message: React.FC<MessageProps> = ({
               !isNextMessageSamePerson && !(message.senderId === userId),
           })}
         >
-          { message.content?.startsWith("http") ? (
-         <audio className="bg-transparent" src={message.content} controls>
-
-         </audio>
-            
+          {message.content?.startsWith("http") ? (
+            <audio
+              className="bg-transparent"
+              src={message.content}
+              controls
+            ></audio>
           ) : (
             message.content
           )}
@@ -79,9 +117,7 @@ const Message: React.FC<MessageProps> = ({
                 "text-zinc-500": !(message.senderId === userId),
                 "text-violet-300": message.senderId === userId,
               })}
-            >
-              
-            </div>
+            ></div>
           ) : null}
         </div>
       </div>

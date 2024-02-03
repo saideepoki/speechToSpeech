@@ -31,8 +31,12 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
             where: {
               chatId:params.id,
             },
-            orderBy: {createdAt:"desc"}
+            orderBy: {createdAt:"desc"},
+            include:{
+                sender:true
+            }
           });
+          
 
           return NextResponse.json({message:messages},{status:200})
         
