@@ -12,7 +12,6 @@ import { pusherClient } from "@/lib/pusher";
 export default function Home() {
   const { isSignedIn } = useUser();
 
-  console.log(isSignedIn);
 
   
  
