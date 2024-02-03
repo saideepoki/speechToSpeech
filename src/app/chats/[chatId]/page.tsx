@@ -1,6 +1,7 @@
 import { ChatContextProvider } from "@/components/ChatContext";
 import ChatInput from "@/components/ChatInput";
 import DeleteChat from "@/components/DeleteChat";
+import InviteUser from "@/components/InviteUser";
 import LeaveChat from "@/components/LeaveChat";
 import Messages from "@/components/Messages";
 import ParticipantsCard from "@/components/ParticipantsCard";
@@ -87,9 +88,9 @@ export default async function ChatPage({
                     )}
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    {chats.adminId === userId ? "Add users" : null}
-                  </DropdownMenuItem>
+                  <DropdownMenuLabel>
+                    {chats.adminId === userId ? <InviteUser chatId={chats.id}/> : null}
+                  </DropdownMenuLabel>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
