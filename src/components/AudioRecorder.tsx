@@ -24,7 +24,6 @@ const VoiceRecorder = () => {
         const e = { target: { value: url.url } };
         //@ts-ignore
         handleInputChange(e);
-        addMessage();
       } else {
         toast.error("Failed to upload audio.");
       }

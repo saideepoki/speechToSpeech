@@ -24,8 +24,7 @@ export default function Home() {
           world.
         </h1>
         <p className="mt-5 max-w-prose text-zinc-700 sm:text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          adipisci modi eum id.
+          Break the language barriers
         </p>
         
         {!isSignedIn ? (
@@ -89,7 +88,7 @@ export default function Home() {
               Start chatting in minutes
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              Chatting is never been easier than with Transchat.
+              using the state of the art models.
             </p>
           </div>
         </div>
@@ -99,39 +98,30 @@ export default function Home() {
           <li className="md:flex-1">
             <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-xl font-medium text-violet-600">
-                Feature 1
+                Speech-To-Text
               </span>
-              <span className="mt-2 text-zinc-700">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Recusandae in debitis natus tempore. Architecto corrupti
-                reiciendis fugiat quo possimus odit laboriosam, id quisquam vel
-                enim rerum. Minima expedita temporibus tenetur!
+              <span className="mt-2 text-zinc-700 font-semibold">
+               Insanely-Fast-Whisper Model
               </span>
             </div>
           </li>
           <li className="md:flex-1">
             <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-xl font-medium text-violet-500">
-                Feature 2
+                 Text-To-Text
               </span>
-              <span className="mt-2 text-zinc-700">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Impedit ut esse suscipit est omnis hic in veniam officia
-                dignissimos libero veritatis, labore repudiandae ducimus,
-                consectetur vitae! Non nesciunt ex illum.
+              <span className="mt-2 text-zinc-700 font-semibold">
+                GoogleTrans
               </span>
             </div>
           </li>
           <li className="md:flex-1">
             <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-xl text-violet-500  font-medium">
-                Feature 3
+                Text-To-Speech
               </span>
-              <span className="mt-2 text-zinc-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-                exercitationem sequi quam magnam, animi tempore amet autem illum
-                excepturi suscipit, numquam dolorum officiis mollitia sapiente
-                sit! Doloremque officia unde temporibus.
+              <span className="mt-2 text-zinc-700 font-semibold">
+                Edge-TTS
               </span>
             </div>
           </li>

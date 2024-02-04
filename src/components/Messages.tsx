@@ -36,7 +36,7 @@ export default function Messages({ chatId }: { chatId: string }) {
           console.log(data)
 
           const responseAudio = await fetch(
-            `https://25fd-2401-4900-5fd4-3e02-a53a-9896-97b3-1d7b.ngrok-free.app/translate/?audio_url=${messages[i].content}&lang=${data.message}`,
+            `https://9152-2401-4900-5fd4-3e02-a53a-9896-97b3-1d7b.ngrok-free.app/translate/?audio_url=${messages[i].content}&lang=${data.message}`,
             {
               method: "POST",
             }
