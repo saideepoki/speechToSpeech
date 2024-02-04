@@ -15,8 +15,6 @@ export default function Messages({ chatId }: { chatId: string }) {
   console.log(user?.id)
 
   const [loading, setLoading] = useState(false);
-  
-
   async function getMessages() {
     try {
       setLoading(true);
@@ -38,7 +36,7 @@ export default function Messages({ chatId }: { chatId: string }) {
           console.log(data)
 
           const responseAudio = await fetch(
-            `http://10.6.21.140:8000/translate/?audio_url=${messages[i].content}&lang=${data.message}`,
+            `http://25fd-2401-4900-5fd4-3e02-a53a-9896-97b3-1d7b.ngrok-free.app/translate/?audio_url=${messages[i].content}&lang=${data.message}`,
             {
               method: "POST",
             }
