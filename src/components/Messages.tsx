@@ -24,6 +24,7 @@ export default function Messages({ chatId }: { chatId: string }) {
       const messages = data.message;
       console.time("myTimer");
       for (let i = 0; i < messages.length; i++) {
+        
         if (
           user?.id !== messages[i].senderId &&
           messages[i]?.content?.startsWith("https")
@@ -59,8 +60,22 @@ export default function Messages({ chatId }: { chatId: string }) {
           } else {
             toast.error("Failed to upload audio.");
           }
-        } else {
-         console.log("mesaage")
+        } else if( user?.id !== messages[i].senderId ) {
+            const responseLang=await fetch(`/api/lang`)
+            const data= await responseLang.json()
+            console.log(messages[i].content)
+            const responseText = await fetch(
+              `https://9152-2401-4900-5fd4-3e02-a53a-9896-97b3-1d7b.ngrok-free.app/translate_text/?text=${messages[i].content}&dest_lang=${data.message}`,
+              {
+                method: "POST",
+              }
+            );
+            const text=await responseText.text()
+            console.log(text);
+            messages[i].content=text
+            
+        }else{
+          console.log("lol")
         }
       }
       setData(messages);
